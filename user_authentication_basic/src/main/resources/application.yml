@@ -2,7 +2,7 @@ spring:
     application: 
         name: user_authentication_basic
     datasource:
-        url: jdbc:postgresql://localhost:5432/mydatabaseauth
+        url: jdbc:postgresql://postgres:5432/mydatabaseauth
         username: admin
         password: admin
         driver-class-name: org.postgresql.Driver
@@ -12,4 +12,4 @@ spring:
             ddl-auto: update
         properties:
             hibernate.format_sql: true
-
+            hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
