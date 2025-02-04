@@ -10,18 +10,25 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin_container
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: admin
-
     ports:
       - "5050:80"
-    
     depends_on:
       - postgres
+
+  app:
+    image: auth
+    container_name: spring_app
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
 
 volumes:
   postgres_data:
