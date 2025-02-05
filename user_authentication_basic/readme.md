@@ -1,10 +1,10 @@
-# Aplicação de Autenticação com SpringBoot, SpringSecurity e JWT
+# Auth Application with SpringBoot, SpringSecurity and JWT
 
-### Antes de iniciar, execute os seguintes comandos:
+### Before start, run the command:
 
 - docker build -t <nome_imagem> .
 
-### Vá até a pasta do docker:
+### Go to Docker folder:
 
 - docker-compose up
 
