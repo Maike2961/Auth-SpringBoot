@@ -1,42 +1,41 @@
 package io.github.auth.user.mayki.user_authentication_basic.model;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import io.github.auth.user.mayki.user_authentication_basic.Enum.UserTypes;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import org.apache.catalina.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.Data;
 
 @Entity
-@Table(name = "users")
-public class Usuario implements UserDetails {
+@Table
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private String nome;
+
+    @Column
+    private String email;
+
+    @Column
     private String login;
+
+    @Column
     private String password;
-    private UserTypes role ;
+
+    @Column
+    private List<UserTypes> role ;
 
 
-    public Usuario(String nome, String login, String password, UserTypes roles) {
-        this.nome = nome;
-        this.login = login;
+    public Usuario(String email, String login, String password, List<UserTypes> roles) {
+        this.email = email;
+        this.login= login;
         this.password = password;
         this.role = roles;
     }
@@ -52,12 +51,12 @@ public class Usuario implements UserDetails {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getEmail() {
+        return email;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLogin() {
@@ -68,57 +67,19 @@ public class Usuario implements UserDetails {
         this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public UserTypes getRole() {
+    public List<UserTypes> getRole() {
         return role;
     }
 
-    public void setRole(UserTypes role) {
+    public void setRole(List<UserTypes> role) {
         this.role = role;
     }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserTypes.ADMIN){
-            return List.of(
-                    new SimpleGrantedAuthority("ROLE_ADMIN"),
-                    new SimpleGrantedAuthority("ROLE_USER")
-            );
-        }
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.login;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-
 }
