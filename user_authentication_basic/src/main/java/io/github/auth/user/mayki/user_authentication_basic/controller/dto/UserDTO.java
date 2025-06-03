@@ -1,17 +1,22 @@
-package io.github.auth.user.mayki.user_authentication_basic.Controller.dto;
+package io.github.auth.user.mayki.user_authentication_basic.controller.dto;
 
 import io.github.auth.user.mayki.user_authentication_basic.Enum.UserTypes;
 import io.github.auth.user.mayki.user_authentication_basic.model.Usuario;
 
-import java.util.Set;
+import java.util.List;
 
 public record UserDTO(
-        String nome,
+        String email,
         String login,
         String password,
-        UserTypes roles) {
+        List<UserTypes> roles) {
 
     public Usuario toEntity(){
-        return new Usuario(nome, login, password, roles);
+        return new Usuario(
+                email,
+                login,
+                password,
+                roles
+        );
     }
 }
