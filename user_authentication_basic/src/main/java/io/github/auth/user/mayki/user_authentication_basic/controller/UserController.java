@@ -6,6 +6,7 @@ import io.github.auth.user.mayki.user_authentication_basic.security.ServiceSecur
 import io.github.auth.user.mayki.user_authentication_basic.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +23,14 @@ public class UserController {
     }
 
     @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
     public String olaAdmin(Authentication authentication){
         System.out.println("esse é o usuário: " + security.getUsuarioLogado().getLogin());
         return "Olá Admin";
     }
 
     @GetMapping("/user")
+    @PreAuthorize("hasRole('USER')")
     public String olaUser(){
         return "Olá user";
     }
