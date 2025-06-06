@@ -39,5 +39,4 @@ public class UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
     }
 
-
 }
