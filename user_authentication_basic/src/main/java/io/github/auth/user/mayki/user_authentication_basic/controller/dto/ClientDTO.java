@@ -4,9 +4,10 @@ import io.github.auth.user.mayki.user_authentication_basic.model.Client;
 
 public record ClientDTO(String clientId,
                         String clientSecret,
+                        String redirectUri,
                         String scope) {
 
     public Client toEntity(){
-        return new Client(clientId, clientSecret, scope);
+        return new Client(clientId, clientSecret, redirectUri ,scope);
     }
 }

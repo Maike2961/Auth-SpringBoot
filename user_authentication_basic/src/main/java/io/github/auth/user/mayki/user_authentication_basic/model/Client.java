@@ -18,15 +18,19 @@ public class Client {
     @Column(name = "client_secret")
     private String clientSecret;
 
+    @Column(name = "redirect_uri")
+    private String redirectUri;
+
     @Column(name = "scope")
     private String scope;
 
     public Client() {
     }
 
-    public Client(String clientId, String clientSecret, String scope) {
+    public Client(String clientId, String clientSecret, String redirectUri ,String scope) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
+        this.redirectUri = redirectUri;
         this.scope = scope;
     }
 
@@ -60,5 +64,13 @@ public class Client {
 
     public void setScope(String scope) {
         this.scope = scope;
+    }
+
+    public String getRedirectUri() {
+        return redirectUri;
+    }
+
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
     }
 }

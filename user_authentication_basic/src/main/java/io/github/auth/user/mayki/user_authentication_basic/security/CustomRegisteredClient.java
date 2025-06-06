@@ -45,11 +45,10 @@ public class CustomRegisteredClient implements RegisteredClientRepository {
                 .withId(client.getId().toString())
                 .clientId(client.getClientId())
                 .clientSecret(client.getClientSecret())
-                .redirectUri("http://localhost:8080/authorized")
+                .redirectUri(client.getRedirectUri())
                 .scope(client.getScope())
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .tokenSettings(tokenSettings)
                 .clientSettings(clientSettings)
                 .build();
