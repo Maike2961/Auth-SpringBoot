@@ -24,7 +24,7 @@ public class UserController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public String olaAdmin(Authentication authentication){
+    public String olaAdmin(){
         System.out.println("esse é o usuário: " + security.getUsuarioLogado().getLogin());
         return "Olá Admin";
     }
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping
-    private ResponseEntity<?> salvar(@RequestBody UserDTO userDTO){
+    public ResponseEntity<?> salvar(@RequestBody UserDTO userDTO){
         service.salvar(userDTO);
         return ResponseEntity.accepted().body(userDTO);
     }
